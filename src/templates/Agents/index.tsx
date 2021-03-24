@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo'
+
 import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline'
 import LinkWrapper from 'components/LinkWrapper'
 import { useRouter } from 'next/dist/client/router'
@@ -65,6 +67,23 @@ export default function AgentsTemplate({ agent }: AgentsTemplateProps) {
   } = agent
   return (
     <>
+      <NextSeo
+        title={'Agent: ' + nickName}
+        canonical="https://r6map-santosmaycon.vercel.app"
+        openGraph={{
+          url: 'https://r6map-santosmaycon.vercel.app',
+          title: 'Agent: ' + nickName,
+          description: `Agent: ${nickName}, Real Name: ${name}, `,
+          images: [
+            {
+              url: avatar.url,
+              width: avatar.width,
+              height: avatar.height,
+              alt: nickName
+            }
+          ]
+        }}
+      />
       <LinkWrapper href="/">
         <CloseOutline size={32} aria-label="Go back to map" />
       </LinkWrapper>

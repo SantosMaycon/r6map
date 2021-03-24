@@ -6,11 +6,13 @@ import GlobalStyles from 'styles/global'
 
 import NextNprogress from 'nextjs-progressbar'
 
+import { DefaultSeo } from 'next-seo'
+import SEO from '../../next-seo.config'
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>R6 Map</title>
         <link rel="manifest" href="/manifest.json" />
         <link
           rel="stylesheet"
@@ -19,11 +21,8 @@ function App({ Component, pageProps }: AppProps) {
           crossOrigin=""
         />
         <meta name="theme-color" content="#06092b" />
-        <meta
-          name="description"
-          content="A simple project to show agents of R6 spots in the world."
-        />
       </Head>
+      <DefaultSeo {...SEO} />
       <GlobalStyles />
       <NextNprogress
         color="#f231a5"
