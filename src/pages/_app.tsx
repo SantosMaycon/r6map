@@ -10,7 +10,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>My Trips</title>
+        <title>R6 Map</title>
         <link rel="manifest" href="/manifest.json" />
         <link
           rel="stylesheet"
@@ -21,7 +21,7 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#06092b" />
         <meta
           name="description"
-          content="A simple project to show my favorite spots in the world."
+          content="A simple project to show agents of R6 spots in the world."
         />
       </Head>
       <GlobalStyles />

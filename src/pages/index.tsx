@@ -1,19 +1,19 @@
 import { MapProps } from 'components/Map'
 import client from 'graphql/client'
-import { GET_PLACES } from 'graphql/queries'
+import { GET_AGENTS } from 'graphql/queries'
 import HomeTemplate from 'templates/home'
-import { GetPlacesQuery } from 'graphql/generated/graphql'
+import { GetAgentsQuery } from 'graphql/generated/graphql'
 
-export default function Home({ places }: MapProps) {
-  return <HomeTemplate places={places} />
+export default function Home({ agents }: MapProps) {
+  return <HomeTemplate agents={agents} />
 }
 
 export const getStaticProps = async () => {
-  const { places } = await client.request<GetPlacesQuery>(GET_PLACES)
+  const { agents } = await client.request<GetAgentsQuery>(GET_AGENTS)
 
   return {
     props: {
-      places
+      agents
     }
   }
 }

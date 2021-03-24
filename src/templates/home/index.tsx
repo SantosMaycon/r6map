@@ -5,25 +5,13 @@ import LinkWrapper from 'components/LinkWrapper'
 import { MapProps } from 'components/Map'
 const Map = dynamic(() => import('components/Map'), { ssr: false })
 
-export default function HomeTemplate({ places }: MapProps) {
+export default function HomeTemplate({ agents }: MapProps) {
   return (
     <>
-      <LinkWrapper href="/about">
-        <InfoOutline size={32} aria-label="About" />
+      <LinkWrapper href="/sobre">
+        <InfoOutline size={32} aria-label="Go to the page about" />
       </LinkWrapper>
-      <Map places={places} />
+      <Map agents={agents} />
     </>
   )
 }
-
-// [
-//   {
-//     id: '1',
-//     name: 'Penha',
-//     slug: 'penha',
-//     location: {
-//       latitude: -21.791326,
-//       longitude: -41.29285
-//     }
-//   }
-// ]

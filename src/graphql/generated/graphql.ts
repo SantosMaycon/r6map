@@ -29,6 +29,707 @@ export type Scalars = {
 
 
 
+export type Agent = Node & {
+  __typename?: 'Agent';
+  /** System stage field */
+  stage: Stage;
+  /** Get the document in other stages */
+  documentInStages: Array<Agent>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  name: Scalars['String'];
+  nickName: Scalars['String'];
+  org: Scalars['String'];
+  birthDate?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
+  birthplace?: Maybe<Scalars['String']>;
+  location: Location;
+  avatar: Asset;
+  gadget: Asset;
+  orgImage?: Maybe<Asset>;
+  about?: Maybe<RichText>;
+  slug?: Maybe<Scalars['String']>;
+  /** List of Agent versions */
+  history: Array<Version>;
+};
+
+
+export type AgentDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type AgentAvatarArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type AgentGadgetArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type AgentOrgImageArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type AgentHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+export type AgentConnectInput = {
+  /** Document to connect */
+  where: AgentWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
+/** A connection to a list of items. */
+export type AgentConnection = {
+  __typename?: 'AgentConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<AgentEdge>;
+  aggregate: Aggregate;
+};
+
+export type AgentCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  name: Scalars['String'];
+  nickName: Scalars['String'];
+  org: Scalars['String'];
+  birthDate?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
+  birthplace?: Maybe<Scalars['String']>;
+  location: LocationInput;
+  avatar: AssetCreateOneInlineInput;
+  gadget: AssetCreateOneInlineInput;
+  orgImage?: Maybe<AssetCreateOneInlineInput>;
+  about?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+export type AgentCreateManyInlineInput = {
+  /** Create and connect multiple existing Agent documents */
+  create?: Maybe<Array<AgentCreateInput>>;
+  /** Connect multiple existing Agent documents */
+  connect?: Maybe<Array<AgentWhereUniqueInput>>;
+};
+
+export type AgentCreateOneInlineInput = {
+  /** Create and connect one Agent document */
+  create?: Maybe<AgentCreateInput>;
+  /** Connect one existing Agent document */
+  connect?: Maybe<AgentWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type AgentEdge = {
+  __typename?: 'AgentEdge';
+  /** The item at the end of the edge. */
+  node: Agent;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
+/** Identifies documents */
+export type AgentManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<AgentWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<AgentWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<AgentWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  nickName?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  nickName_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  nickName_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  nickName_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  nickName_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  nickName_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  nickName_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  nickName_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  nickName_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  nickName_not_ends_with?: Maybe<Scalars['String']>;
+  org?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  org_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  org_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  org_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  org_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  org_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  org_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  org_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  org_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  org_not_ends_with?: Maybe<Scalars['String']>;
+  birthDate?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  birthDate_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  birthDate_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  birthDate_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  birthDate_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  birthDate_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  birthDate_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  birthDate_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  birthDate_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  birthDate_not_ends_with?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  height_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  height_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  height_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  height_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  height_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  height_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  height_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  height_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  height_not_ends_with?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  weight_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  weight_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  weight_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  weight_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  weight_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  weight_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  weight_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  weight_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  weight_not_ends_with?: Maybe<Scalars['String']>;
+  birthplace?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  birthplace_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  birthplace_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  birthplace_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  birthplace_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  birthplace_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  birthplace_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  birthplace_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  birthplace_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  birthplace_not_ends_with?: Maybe<Scalars['String']>;
+  avatar?: Maybe<AssetWhereInput>;
+  gadget?: Maybe<AssetWhereInput>;
+  orgImage?: Maybe<AssetWhereInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+export enum AgentOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  NickNameAsc = 'nickName_ASC',
+  NickNameDesc = 'nickName_DESC',
+  OrgAsc = 'org_ASC',
+  OrgDesc = 'org_DESC',
+  BirthDateAsc = 'birthDate_ASC',
+  BirthDateDesc = 'birthDate_DESC',
+  HeightAsc = 'height_ASC',
+  HeightDesc = 'height_DESC',
+  WeightAsc = 'weight_ASC',
+  WeightDesc = 'weight_DESC',
+  BirthplaceAsc = 'birthplace_ASC',
+  BirthplaceDesc = 'birthplace_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC'
+}
+
+export type AgentUpdateInput = {
+  name?: Maybe<Scalars['String']>;
+  nickName?: Maybe<Scalars['String']>;
+  org?: Maybe<Scalars['String']>;
+  birthDate?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
+  birthplace?: Maybe<Scalars['String']>;
+  location?: Maybe<LocationInput>;
+  avatar?: Maybe<AssetUpdateOneInlineInput>;
+  gadget?: Maybe<AssetUpdateOneInlineInput>;
+  orgImage?: Maybe<AssetUpdateOneInlineInput>;
+  about?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+export type AgentUpdateManyInlineInput = {
+  /** Create and connect multiple Agent documents */
+  create?: Maybe<Array<AgentCreateInput>>;
+  /** Connect multiple existing Agent documents */
+  connect?: Maybe<Array<AgentConnectInput>>;
+  /** Override currently-connected documents with multiple existing Agent documents */
+  set?: Maybe<Array<AgentWhereUniqueInput>>;
+  /** Update multiple Agent documents */
+  update?: Maybe<Array<AgentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Agent documents */
+  upsert?: Maybe<Array<AgentUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Agent documents */
+  disconnect?: Maybe<Array<AgentWhereUniqueInput>>;
+  /** Delete multiple Agent documents */
+  delete?: Maybe<Array<AgentWhereUniqueInput>>;
+};
+
+export type AgentUpdateManyInput = {
+  name?: Maybe<Scalars['String']>;
+  nickName?: Maybe<Scalars['String']>;
+  org?: Maybe<Scalars['String']>;
+  birthDate?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
+  birthplace?: Maybe<Scalars['String']>;
+  location?: Maybe<LocationInput>;
+  about?: Maybe<Scalars['RichTextAST']>;
+};
+
+export type AgentUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: AgentWhereInput;
+  /** Update many input */
+  data: AgentUpdateManyInput;
+};
+
+export type AgentUpdateOneInlineInput = {
+  /** Create and connect one Agent document */
+  create?: Maybe<AgentCreateInput>;
+  /** Update single Agent document */
+  update?: Maybe<AgentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Agent document */
+  upsert?: Maybe<AgentUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Agent document */
+  connect?: Maybe<AgentWhereUniqueInput>;
+  /** Disconnect currently connected Agent document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Agent document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type AgentUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: AgentWhereUniqueInput;
+  /** Document to update */
+  data: AgentUpdateInput;
+};
+
+export type AgentUpsertInput = {
+  /** Create document if it didn't exist */
+  create: AgentCreateInput;
+  /** Update document if it exists */
+  update: AgentUpdateInput;
+};
+
+export type AgentUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: AgentWhereUniqueInput;
+  /** Upsert data */
+  data: AgentUpsertInput;
+};
+
+/** Identifies documents */
+export type AgentWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<AgentWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<AgentWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<AgentWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  nickName?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  nickName_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  nickName_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  nickName_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  nickName_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  nickName_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  nickName_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  nickName_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  nickName_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  nickName_not_ends_with?: Maybe<Scalars['String']>;
+  org?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  org_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  org_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  org_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  org_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  org_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  org_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  org_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  org_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  org_not_ends_with?: Maybe<Scalars['String']>;
+  birthDate?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  birthDate_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  birthDate_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  birthDate_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  birthDate_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  birthDate_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  birthDate_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  birthDate_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  birthDate_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  birthDate_not_ends_with?: Maybe<Scalars['String']>;
+  height?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  height_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  height_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  height_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  height_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  height_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  height_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  height_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  height_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  height_not_ends_with?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  weight_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  weight_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  weight_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  weight_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  weight_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  weight_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  weight_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  weight_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  weight_not_ends_with?: Maybe<Scalars['String']>;
+  birthplace?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  birthplace_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  birthplace_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  birthplace_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  birthplace_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  birthplace_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  birthplace_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  birthplace_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  birthplace_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  birthplace_not_ends_with?: Maybe<Scalars['String']>;
+  avatar?: Maybe<AssetWhereInput>;
+  gadget?: Maybe<AssetWhereInput>;
+  orgImage?: Maybe<AssetWhereInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+/** References Agent record uniquely */
+export type AgentWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+  slug?: Maybe<Scalars['String']>;
+};
+
 export type Aggregate = {
   __typename?: 'Aggregate';
   count: Scalars['Int'];
@@ -66,6 +767,9 @@ export type Asset = Node & {
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>;
   galleryPlace: Array<Place>;
+  avatarAgent: Array<Agent>;
+  gadgetAgent: Array<Agent>;
+  orgImageAgent: Array<Agent>;
   /** List of Asset versions */
   history: Array<Version>;
   /** Get the url for the asset with provided transformations applied. */
@@ -120,6 +824,45 @@ export type AssetGalleryPlaceArgs = {
 
 
 /** Asset system model */
+export type AssetAvatarAgentArgs = {
+  where?: Maybe<AgentWhereInput>;
+  orderBy?: Maybe<AgentOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
+export type AssetGadgetAgentArgs = {
+  where?: Maybe<AgentWhereInput>;
+  orderBy?: Maybe<AgentOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
+export type AssetOrgImageAgentArgs = {
+  where?: Maybe<AgentWhereInput>;
+  orderBy?: Maybe<AgentOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -159,6 +902,9 @@ export type AssetCreateInput = {
   size?: Maybe<Scalars['Float']>;
   mimeType?: Maybe<Scalars['String']>;
   galleryPlace?: Maybe<PlaceCreateManyInlineInput>;
+  avatarAgent?: Maybe<AgentCreateManyInlineInput>;
+  gadgetAgent?: Maybe<AgentCreateManyInlineInput>;
+  orgImageAgent?: Maybe<AgentCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
 };
@@ -285,6 +1031,15 @@ export type AssetManyWhereInput = {
   galleryPlace_every?: Maybe<PlaceWhereInput>;
   galleryPlace_some?: Maybe<PlaceWhereInput>;
   galleryPlace_none?: Maybe<PlaceWhereInput>;
+  avatarAgent_every?: Maybe<AgentWhereInput>;
+  avatarAgent_some?: Maybe<AgentWhereInput>;
+  avatarAgent_none?: Maybe<AgentWhereInput>;
+  gadgetAgent_every?: Maybe<AgentWhereInput>;
+  gadgetAgent_some?: Maybe<AgentWhereInput>;
+  gadgetAgent_none?: Maybe<AgentWhereInput>;
+  orgImageAgent_every?: Maybe<AgentWhereInput>;
+  orgImageAgent_some?: Maybe<AgentWhereInput>;
+  orgImageAgent_none?: Maybe<AgentWhereInput>;
 };
 
 export enum AssetOrderByInput {
@@ -326,6 +1081,9 @@ export type AssetUpdateInput = {
   size?: Maybe<Scalars['Float']>;
   mimeType?: Maybe<Scalars['String']>;
   galleryPlace?: Maybe<PlaceUpdateManyInlineInput>;
+  avatarAgent?: Maybe<AgentUpdateManyInlineInput>;
+  gadgetAgent?: Maybe<AgentUpdateManyInlineInput>;
+  orgImageAgent?: Maybe<AgentUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
 };
@@ -627,6 +1385,15 @@ export type AssetWhereInput = {
   galleryPlace_every?: Maybe<PlaceWhereInput>;
   galleryPlace_some?: Maybe<PlaceWhereInput>;
   galleryPlace_none?: Maybe<PlaceWhereInput>;
+  avatarAgent_every?: Maybe<AgentWhereInput>;
+  avatarAgent_some?: Maybe<AgentWhereInput>;
+  avatarAgent_none?: Maybe<AgentWhereInput>;
+  gadgetAgent_every?: Maybe<AgentWhereInput>;
+  gadgetAgent_some?: Maybe<AgentWhereInput>;
+  gadgetAgent_none?: Maybe<AgentWhereInput>;
+  orgImageAgent_every?: Maybe<AgentWhereInput>;
+  orgImageAgent_some?: Maybe<AgentWhereInput>;
+  orgImageAgent_none?: Maybe<AgentWhereInput>;
 };
 
 /** References Asset record uniquely */
@@ -788,6 +1555,46 @@ export type LocationInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Create one agent */
+  createAgent?: Maybe<Agent>;
+  /** Update one agent */
+  updateAgent?: Maybe<Agent>;
+  /** Delete one agent from _all_ existing stages. Returns deleted document. */
+  deleteAgent?: Maybe<Agent>;
+  /** Upsert one agent */
+  upsertAgent?: Maybe<Agent>;
+  /** Publish one agent */
+  publishAgent?: Maybe<Agent>;
+  /** Unpublish one agent from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishAgent?: Maybe<Agent>;
+  /** Update many Agent documents */
+  updateManyAgentsConnection: AgentConnection;
+  /** Delete many Agent documents, return deleted documents */
+  deleteManyAgentsConnection: AgentConnection;
+  /** Publish many Agent documents */
+  publishManyAgentsConnection: AgentConnection;
+  /** Find many Agent documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyAgentsConnection: AgentConnection;
+  /**
+   * Update many agents
+   * @deprecated Please use the new paginated many mutation (updateManyAgentsConnection)
+   */
+  updateManyAgents: BatchPayload;
+  /**
+   * Delete many Agent documents
+   * @deprecated Please use the new paginated many mutation (deleteManyAgentsConnection)
+   */
+  deleteManyAgents: BatchPayload;
+  /**
+   * Publish many Agent documents
+   * @deprecated Please use the new paginated many mutation (publishManyAgentsConnection)
+   */
+  publishManyAgents: BatchPayload;
+  /**
+   * Unpublish many Agent documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyAgentsConnection)
+   */
+  unpublishManyAgents: BatchPayload;
   /**
    * Create one asset
    * @deprecated Asset mutations will be overhauled soon
@@ -911,6 +1718,108 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyPlacesConnection)
    */
   unpublishManyPlaces: BatchPayload;
+};
+
+
+export type MutationCreateAgentArgs = {
+  data: AgentCreateInput;
+};
+
+
+export type MutationUpdateAgentArgs = {
+  where: AgentWhereUniqueInput;
+  data: AgentUpdateInput;
+};
+
+
+export type MutationDeleteAgentArgs = {
+  where: AgentWhereUniqueInput;
+};
+
+
+export type MutationUpsertAgentArgs = {
+  where: AgentWhereUniqueInput;
+  upsert: AgentUpsertInput;
+};
+
+
+export type MutationPublishAgentArgs = {
+  where: AgentWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishAgentArgs = {
+  where: AgentWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyAgentsConnectionArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  data: AgentUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyAgentsConnectionArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyAgentsConnectionArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyAgentsConnectionArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyAgentsArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  data: AgentUpdateManyInput;
+};
+
+
+export type MutationDeleteManyAgentsArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+};
+
+
+export type MutationPublishManyAgentsArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyAgentsArgs = {
+  where?: Maybe<AgentManyWhereInput>;
+  from?: Array<Stage>;
 };
 
 
@@ -2045,6 +2954,14 @@ export type Query = {
   __typename?: 'Query';
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
+  /** Retrieve multiple agents */
+  agents: Array<Agent>;
+  /** Retrieve a single agent */
+  agent?: Maybe<Agent>;
+  /** Retrieve multiple agents using the Relay connection interface */
+  agentsConnection: AgentConnection;
+  /** Retrieve document version */
+  agentVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple assets */
   assets: Array<Asset>;
   /** Retrieve a single asset */
@@ -2076,6 +2993,44 @@ export type QueryNodeArgs = {
   id: Scalars['ID'];
   stage?: Stage;
   locales?: Array<Locale>;
+};
+
+
+export type QueryAgentsArgs = {
+  where?: Maybe<AgentWhereInput>;
+  orderBy?: Maybe<AgentOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryAgentArgs = {
+  where: AgentWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryAgentsConnectionArgs = {
+  where?: Maybe<AgentWhereInput>;
+  orderBy?: Maybe<AgentOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryAgentVersionArgs = {
+  where: VersionWhereInput;
 };
 
 
@@ -2379,48 +3334,48 @@ export type GetPageBySlugQuery = (
   )> }
 );
 
-export type GetPlacesQueryVariables = Exact<{
+export type GetAgentsQueryVariables = Exact<{
   first?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type GetPlacesQuery = (
+export type GetAgentsQuery = (
   { __typename?: 'Query' }
-  & { places: Array<(
-    { __typename?: 'Place' }
-    & Pick<Place, 'id' | 'slug' | 'name'>
+  & { agents: Array<(
+    { __typename?: 'Agent' }
+    & Pick<Agent, 'id' | 'name' | 'nickName' | 'slug'>
     & { location: (
       { __typename?: 'Location' }
       & Pick<Location, 'latitude' | 'longitude'>
-    ), description?: Maybe<(
-      { __typename?: 'RichText' }
-      & Pick<RichText, 'html'>
-    )>, gallery: Array<(
+    ), gadget: (
       { __typename?: 'Asset' }
       & Pick<Asset, 'url' | 'height' | 'width'>
-    )> }
+    ) }
   )> }
 );
 
-export type GetPlaceBySlugQueryVariables = Exact<{
-  slug: Scalars['String'];
+export type GetAgentBySlugQueryVariables = Exact<{
+  slug?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetPlaceBySlugQuery = (
+export type GetAgentBySlugQuery = (
   { __typename?: 'Query' }
-  & { place?: Maybe<(
-    { __typename?: 'Place' }
-    & Pick<Place, 'id' | 'slug' | 'name'>
+  & { agent?: Maybe<(
+    { __typename?: 'Agent' }
+    & Pick<Agent, 'id' | 'name' | 'nickName' | 'slug' | 'org' | 'birthDate' | 'height' | 'weight' | 'birthplace'>
     & { location: (
       { __typename?: 'Location' }
-      & Pick<Location, 'latitude' | 'longitude'>
-    ), description?: Maybe<(
+      & Pick<Location, 'longitude' | 'latitude'>
+    ), avatar: (
+      { __typename?: 'Asset' }
+      & Pick<Asset, 'url' | 'width' | 'height'>
+    ), orgImage?: Maybe<(
+      { __typename?: 'Asset' }
+      & Pick<Asset, 'url' | 'width' | 'height'>
+    )>, about?: Maybe<(
       { __typename?: 'RichText' }
       & Pick<RichText, 'html'>
-    )>, gallery: Array<(
-      { __typename?: 'Asset' }
-      & Pick<Asset, 'url' | 'height' | 'width'>
     )> }
   )> }
 );

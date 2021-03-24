@@ -26,20 +26,18 @@ export const GET_PAGE_BY_SLUG = gql`
   }
 `
 
-export const GET_PLACES = gql`
-  query getPlaces($first: Int) {
-    places(first: $first) {
+export const GET_AGENTS = gql`
+  query getAgents($first: Int) {
+    agents(first: $first) {
       id
-      slug
       name
+      nickName
+      slug
       location {
         latitude
         longitude
       }
-      description {
-        html
-      }
-      gallery {
+      gadget {
         url
         height
         width
@@ -48,23 +46,34 @@ export const GET_PLACES = gql`
   }
 `
 
-export const GET_PLACE_BY_SLUG = gql`
-  query getPlaces($slug: String!) {
-    place(where: { slug: $slug }) {
+export const GET_AGENT_BY_SLUG = gql`
+  query getAgentBySlug($slug: String) {
+    agent(where: { slug: $slug }) {
       id
-      slug
       name
+      nickName
+      slug
+      org
+      birthDate
+      height
+      weight
+      birthplace
       location {
-        latitude
         longitude
+        latitude
       }
-      description {
-        html
-      }
-      gallery {
+      avatar {
         url
-        height
         width
+        height
+      }
+      orgImage {
+        url
+        width
+        height
+      }
+      about {
+        html
       }
     }
   }

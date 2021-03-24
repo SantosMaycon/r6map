@@ -1,20 +1,26 @@
 import { useRouter } from 'next/dist/client/router'
 import { MapContainer, TileLayer, Marker, MapConsumer } from 'react-leaflet'
+import L from 'leaflet'
 
 import * as S from './styles'
 
-type Place = {
+type Agent = {
   id: string
-  name: string
+  nickName: string
   slug: string
   location: {
     latitude: number
     longitude: number
   }
+  gadget: {
+    url: string
+    height: number
+    width: number
+  }
 }
 
 export type MapProps = {
-  places?: Place[]
+  agents?: Agent[]
 }
 
 const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY
@@ -35,16 +41,15 @@ const CustomTileLayer = () => {
   )
 }
 
-const Map = ({ places }: MapProps) => {
+const Map = ({ agents }: MapProps) => {
   const router = useRouter()
-
   return (
     <S.MapWrapper>
       <MapContainer
-        center={[0, 0]}
-        zoom={3}
+        center={[20, 0]}
+        zoom={2.7}
         style={{ width: '100%', height: '100%' }}
-        minZoom={3}
+        minZoom={2.7}
         maxBounds={[
           [-180, 180],
           [180, -180]
@@ -65,17 +70,25 @@ const Map = ({ places }: MapProps) => {
           }}
         </MapConsumer>
         <CustomTileLayer />
-        {places?.map(({ id, slug, name, location }) => {
+        {agents?.map(({ id, slug, nickName, location, gadget }) => {
           const { latitude, longitude } = location
 
           return (
             <Marker
-              key={`place-${id}`}
+              key={`agents-${id}`}
               position={[latitude, longitude]}
-              title={name}
+              title={nickName}
+              icon={
+                new L.Icon({
+                  iconUrl: gadget.url,
+                  iconSize: [40, 40],
+                  iconAnchor: [20, 40],
+                  popupAnchor: [0, -40]
+                })
+              }
               eventHandlers={{
                 click: () => {
-                  router.push(`places/${slug}`)
+                  router.push(`agents/${slug}`)
                 }
               }}
             />

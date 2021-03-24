@@ -1,6 +1,6 @@
 {
-  "name": "My Trips",
-  "short_name": "Trips",
+  "name": "R6 Map",
+  "short_name": "R6",
   "icons": [
     {
       "src": "/img/icon-192.png",
@@ -14,7 +14,7 @@
     }
   ],
   "background_color": "#06092B",
-  "description": "A simple project to show my favorite spots in the world.",
+  "description": "A simple project to show agents of R6 spots in the world.",
   "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#06092B"
